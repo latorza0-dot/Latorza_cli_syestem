@@ -7,13 +7,14 @@ import java.sql.Statement;
 public class DatabaseInitializer {
 
     public static void initializer() {
-        // Query to create the 'users' table if it doesn't already exist
+        // Query to create the 'users' table with all required columns including status
         String createTableSQL = """
             CREATE TABLE IF NOT EXISTS users (
                 user_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT UNIQUE NOT NULL,
                 password TEXT NOT NULL,
-                roles TEXT NOT NULL
+                roles TEXT NOT NULL,
+                status TEXT NOT NULL
             );
         """;
 
