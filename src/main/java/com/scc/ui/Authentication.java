@@ -16,7 +16,7 @@ public class Authentication {
 
     public void start() {
         System.out.println("\n================================");
-        System.out.println("  Employee Attendance Record System");
+        System.out.println(" Brgy. Healthcare Appointment");
         System.out.println("================================");
         System.out.println("1. Login");
         System.out.println("2. Register");
@@ -65,17 +65,17 @@ public class Authentication {
         System.out.print("Enter Password: ");
         String password = scanner.nextLine();
 
-        System.out.print("Select a role [1] Employee [2] Staff [3] Administrator: ");
+        System.out.print("Select a role [1] User [2] Doctor [3] Administrator: ");
         int rolesChoice = scanner.nextInt();
         scanner.nextLine(); // Consume remaining newline character
         String roles;
 
         switch (rolesChoice) {
             case 1:
-                roles = "EMPLOYEE";
+                roles = "User";
                 break;
             case 2:
-                roles = "STAFF";
+                roles = "Doctor";
                 break;
             case 3:
                 roles = "ADMIN";
