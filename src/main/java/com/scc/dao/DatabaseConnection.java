@@ -3,18 +3,16 @@ package com.scc.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseConnection {
-
-    private static final String DB_URL_= "jdbc:sqlite:Barangayhealthcarerecords.db";
+    private static final String DB_URL = "jdbc:sqlite:Barangayhealthcarerecords.db";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL_);
-
-
-
+        Connection connection = DriverManager.getConnection(DB_URL);
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("PRAGMA foreign_keys = ON");
+        }
+        return connection;
     }
-
-
-
 }
