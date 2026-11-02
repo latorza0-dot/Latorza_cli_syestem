@@ -22,7 +22,7 @@ public class Userdao {
 
     public void defaultAdminGenerator(Connection conn) {
         String checkSql = "SELECT COUNT(*) FROM users WHERE roles = 'ADMIN'";
-        String insertSql = "INSERT INTO users(id, username, password, roles, status) VALUES('admin', 'admin123', 'ADMIN', 'APPROVED')";
+        String insertSql = "INSERT INTO users(username, password, roles, status) VALUES('admin', 'admin123', 'ADMIN', 'APPROVED')";
 
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(checkSql)) {
@@ -36,14 +36,14 @@ public class Userdao {
     }
 
     public boolean registerUser(String username, String password, String roles) {
-        String sql = "INSERT INTO users(id, username, password, roles, status) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO users(username, password, roles, status) VALUES(?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstm = conn.prepareStatement(sql)) {
 
             pstm.setString(1, username);
             pstm.setString(2, password);
             pstm.setString(3, roles.toUpperCase());
-            pstm.setString(4, "PENDING"); // Default status
+            pstm.setString(4, "PENDING");
             pstm.executeUpdate();
 
             System.out.println("User registered successfully in the database!");
@@ -56,7 +56,7 @@ public class Userdao {
     }
 
     public boolean addUserByAdmin(String username, String password, String roles, String status) {
-        String sql = "INSERT INTO users(id, username, password, roles, status) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO users(username, password, roles, status) VALUES(?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstm = conn.prepareStatement(sql)) {
 
